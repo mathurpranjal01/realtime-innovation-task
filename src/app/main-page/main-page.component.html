@@ -1,0 +1,75 @@
+<div class="logo text-center image-vertical-space">
+    <img width="200" src="assets/employee-logo1.png" />
+  </div>
+  
+  <div class="registeration-form m-3 p-4">
+    <form [formGroup]="employeeForm">
+      <div class="d-flex justify-content-center">
+        <mat-form-field appearance="outline" class="input-box">
+          <mat-label>Employee Name</mat-label>
+          <input
+            required
+            id="employeeName"
+            formControlName="employeeName"
+            matInput
+            placeholder="Employee Name"
+            ngModel
+          />
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+      </div>
+  
+      <div class="d-flex justify-content-center">
+        <mat-form-field appearance="outline" class="input-box">
+          <mat-label>Designation</mat-label>
+          <mat-select required formControlName="designation" id="designation">
+            <mat-option
+              *ngFor="let designation of developers"
+              [value]="designation"
+            >
+              {{ designation }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+  
+      <div class="d-flex justify-content-center">
+        <mat-form-field color="primary">
+          <mat-label>Date From</mat-label>
+          <input matInput [matDatepicker]="picker1" [formControl]="date" />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker1"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+  
+        <mat-form-field color="primary">
+          <mat-label>Date To</mat-label>
+          <input matInput [matDatepicker]="picker2" formControlName="dateTo" />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker2"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker2 color="primary"></mat-datepicker>
+        </mat-form-field>
+      </div>
+  
+      <div class="d-flex justify-content-center button-vertical-space">
+        <button mat-stroked-button class="button-space" color="primary">
+          Cancel
+        </button>
+        <button
+          [disabled]="buttonDisabled"
+          (click)="submit()"
+          mat-raised-button
+          color="primary"
+        >
+          Save Details
+        </button>
+      </div>
+    </form>
+  </div>
+  
